@@ -51,6 +51,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
     - Wrapped product components with a fragment to avoid extra DOM ndoes and so that the parent's grid layout is applied correctly
     - Used `.map()` to iterate over products and render each product
     - Used `addToBasket()` from basked context to update basket state
+  - Removed unused `.content` CSS rule
   - Created type for item and placed it in `common/types` so that it can be used throughout the application
   - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
   - Refactored `addToBasket` (formerly `addToCart`) and used functional updater to ensure it uses the most-up-to-date previous value
