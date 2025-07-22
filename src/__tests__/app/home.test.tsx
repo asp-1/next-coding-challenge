@@ -10,7 +10,7 @@ describe('Home', () => {
 
   it('renders an empty basket', () => {
     const basketButton = screen.getByRole('button', {
-      name: /Basket:/i,
+      name: /Go to checkout, .* in basket/i,
     });
 
     expect(basketButton).toHaveTextContent('Basket: 0 items');
@@ -18,7 +18,7 @@ describe('Home', () => {
 
   it('renders a basket with 1 item', async () => {
     const buttons = screen.getAllByRole('button', {
-      name: /Add to basket/i,
+      name: /Add .* to basket/i,
     });
 
     await act(async () => {
@@ -26,7 +26,7 @@ describe('Home', () => {
     });
 
     const basketButton = screen.getByRole('button', {
-      name: /Basket:/i,
+      name: /Go to checkout, .* in basket/i,
     });
 
     expect(basketButton).toHaveTextContent(/Basket: 1 items$/);
@@ -34,7 +34,7 @@ describe('Home', () => {
 
   it('renders a basket with 1 of item 1 and 2 of item 2', async () => {
     const buttons = screen.getAllByRole('button', {
-      name: /Add to basket/i,
+      name: /Add .* to basket/i,
     });
 
     await act(async () => {
@@ -44,7 +44,7 @@ describe('Home', () => {
     });
 
     const basketButton = screen.getByRole('button', {
-      name: /Basket:/i,
+      name: /Go to checkout, .* in basket/i,
     });
 
     expect(basketButton).toHaveTextContent(/Basket: 3 items$/);
