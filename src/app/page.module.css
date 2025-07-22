@@ -163,6 +163,7 @@
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
-    /* TODO Look up how to make a 2 column list*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
