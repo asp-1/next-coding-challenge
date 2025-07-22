@@ -22,7 +22,8 @@
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@styles/*": ["./src/styles/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@types": ["./src/common/types"]
     },
     "types": [
       "@testing-library/jest-dom"
