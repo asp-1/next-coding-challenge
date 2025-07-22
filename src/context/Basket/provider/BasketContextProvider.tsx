@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
 
 import { initialBasketState, BasketContext } from '@context/Basket';
@@ -14,7 +14,7 @@ const BasketContextProvider: React.FC<BasketContextProviderProps> = ({
 }) => {
   const [basket, setBasket] = useState<Item[]>(initialBasketState.basket);
 
-  const addToBasket = (product: string) => {
+  const addToBasket = useCallback((product: string) => {
     setBasket((prevBasket) => {
       const itemIndex = prevBasket.findIndex((item) => item.name === product);
 
@@ -37,7 +37,7 @@ const BasketContextProvider: React.FC<BasketContextProviderProps> = ({
 
       return [...prevBasket, { name: product, quantity: 1 }];
     });
-  };
+  }, []);
 
   return (
     <BasketContext.Provider value={{ basket, addToBasket }}>
