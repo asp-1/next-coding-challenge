@@ -1,11 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
+import BasketContextProvider from '@context/Basket';
 import Home from '@app/page';
 
 describe('Home', () => {
   beforeEach(() => {
-    render(<Home />);
+    render(
+      <BasketContextProvider>
+        <Home />
+      </BasketContextProvider>,
+    );
   });
 
   it('renders an empty basket', () => {
