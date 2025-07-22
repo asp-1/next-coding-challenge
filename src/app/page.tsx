@@ -6,13 +6,13 @@ import Basket from '@components/Basket';
 import { useBasketContext } from '@context/Basket';
 
 export default function Home() {
-  const { basket, addToBasket } = useBasketContext();
+  const { addToBasket } = useBasketContext();
 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <p>Michael&apos;s Amazing Web Store</p>
-        <Basket basket={basket} />
+        <Basket />
       </div>
 
       <div className={styles.grid}>

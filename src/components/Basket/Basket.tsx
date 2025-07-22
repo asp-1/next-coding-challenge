@@ -2,13 +2,12 @@ import React, { useMemo } from 'react';
 
 import styles from './basket.module.css';
 import BasketItem from '@components/BasketItem';
+import { useBasketContext } from '@context/Basket';
 import type { Item } from '@types';
 
-type BasketProps = {
-  basket: Item[];
-};
+const Basket: React.FC = () => {
+  const { basket } = useBasketContext();
 
-const Basket: React.FC<BasketProps> = ({ basket }) => {
   const totalQuantity = useMemo(
     () => basket.reduce((sum, item) => sum + item.quantity, 0),
     [basket],

@@ -46,6 +46,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
     - Moved relevant styles from `page.module.css`
     - Used `<ul>` and `<li>` to improve accessibility and structure for assitive technologies, such as screen readers
     - Used `.map()` to iterate over items and render each basket item
+    - Used basket state from context to grab basket
     - Calculated total quantity from basket array and memoised result
   - Created type for item and placed it in `common/types` so that it can be used throughout the application
   - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
