@@ -24,7 +24,8 @@
       "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
       "@types": ["./src/common/types"],
-      "@context/*": ["./src/context/*"]
+      "@context/*": ["./src/context/*"],
+      "@data/*": ["./src/data/*"]
     },
     "types": [
       "@testing-library/jest-dom"
