@@ -15,27 +15,28 @@ const BasketContextProvider: React.FC<BasketContextProviderProps> = ({
   const [basket, setBasket] = useState<Item[]>(initialBasketState.basket);
 
   const addToBasket = (product: string) => {
-    const itemIndex = basket.findIndex((item) => item.name === product);
-    const isAlreadyInCart = itemIndex > -1;
+    setBasket((prevBasket) => {
+      const itemIndex = prevBasket.findIndex((item) => item.name === product);
 
-    if (isAlreadyInCart) {
-      const nextItems = basket.map((item, index) => {
-        const hasMatchedIndex = itemIndex === index;
+      const isAlreadyInCart = itemIndex > -1;
 
-        if (hasMatchedIndex) {
-          return {
-            name: item.name,
-            quantity: item.quantity + 1,
-          };
-        }
+      if (isAlreadyInCart) {
+        return prevBasket.map((item, index) => {
+          const hasMatchedIndex = itemIndex === index;
 
-        return item;
-      });
+          if (hasMatchedIndex) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
 
-      setBasket(nextItems);
-    } else {
-      setBasket([...basket, { name: product, quantity: 1 }]);
-    }
+          return item;
+        });
+      }
+
+      return [...prevBasket, { name: product, quantity: 1 }];
+    });
   };
 
   return (
