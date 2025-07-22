@@ -17,13 +17,15 @@ const Basket: React.FC<BasketProps> = ({ items, itemCount }) => {
       <button type="button" className={styles.basket} aria-label={ariaLabel}>
         Basket: {itemCount} items
       </button>
-      {items.map((item: Item) => (
-        <BasketItem
-          key={item.name}
-          name={item.name}
-          count={item.quantity || 0}
-        />
-      ))}
+      <ul aria-label="Basket items">
+        {items.map((item: Item) => (
+          <BasketItem
+            key={item.name}
+            name={item.name}
+            count={item.quantity || 0}
+          />
+        ))}
+      </ul>
     </div>
   );
 };
