@@ -11,9 +11,24 @@ export default function Home() {
   const [itemCount, setItemCount] = useState<number>(0);
 
   const addToCart = (product: string) => {
-    const alreadyInCart = items.find((item) => item.name === product);
-    if (alreadyInCart) {
-      // @TODO need to find out how to update cart items
+    const itemIndex = items.findIndex((item) => item.name === product);
+    const isAlreadyInCart = itemIndex > -1;
+
+    if (isAlreadyInCart) {
+      const nextItems = items.map((item, index) => {
+        const hasMatchedIndex = itemIndex === index;
+
+        if (hasMatchedIndex) {
+          return {
+            name: item.name,
+            quantity: item.quantity + 1,
+          };
+        }
+
+        return item;
+      });
+
+      setItems(nextItems);
     } else {
       setItems([...items, { name: product, quantity: 1 }]);
     }
