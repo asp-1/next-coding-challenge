@@ -21,7 +21,7 @@ const Basket: React.FC<BasketProps> = ({ basket }) => {
       <button type="button" className={styles.basket} aria-label={ariaLabel}>
         Basket: {totalQuantity} items
       </button>
-      <ul aria-label="Basket items">
+      <ul className={styles.basketList} aria-label="Basket items">
         {basket.map((item: Item) => (
           <BasketItem
             key={item.name}
