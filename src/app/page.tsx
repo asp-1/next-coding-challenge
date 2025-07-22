@@ -4,9 +4,10 @@ import { useState } from 'react';
 import styles from '@app/page.module.css';
 import Product from '@components/Product';
 import Basket from '@components/Basket';
+import type { Item } from '@types';
 
 export default function Home() {
-  const [items, setItems] = useState<{ name: string; quantity: number }[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
   const [itemCount, setItemCount] = useState<number>(0);
 
   const addToCart = (product: string) => {
