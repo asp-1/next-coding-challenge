@@ -1,67 +1,40 @@
 'use client';
-import { useState } from 'react';
-
 import styles from '@app/page.module.css';
 import Product from '@components/Product';
 import Basket from '@components/Basket';
-import type { Item } from '@types';
+
+import { useBasketContext } from '@context/Basket';
 
 export default function Home() {
-  const [items, setItems] = useState<Item[]>([]);
-  const [itemCount, setItemCount] = useState<number>(0);
-
-  const addToCart = (product: string) => {
-    const itemIndex = items.findIndex((item) => item.name === product);
-    const isAlreadyInCart = itemIndex > -1;
-
-    if (isAlreadyInCart) {
-      const nextItems = items.map((item, index) => {
-        const hasMatchedIndex = itemIndex === index;
-
-        if (hasMatchedIndex) {
-          return {
-            name: item.name,
-            quantity: item.quantity + 1,
-          };
-        }
-
-        return item;
-      });
-
-      setItems(nextItems);
-    } else {
-      setItems([...items, { name: product, quantity: 1 }]);
-    }
-    setItemCount((prevItemCount) => prevItemCount + 1);
-  };
+  const { basket, addToBasket } = useBasketContext();
 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <p>Michael&apos;s Amazing Web Store</p>
-        <Basket items={items} itemCount={itemCount} />
+        <Basket basket={basket} />
       </div>
 
       <div className={styles.grid}>
         <Product
           name="Item 1"
           description="Foo"
-          onClick={() => addToCart('Item 1')}
+          onClick={() => addToBasket('Item 1')}
         />
         <Product
           name="Item 2"
           description="Bar"
-          onClick={() => addToCart('Item 2')}
+          onClick={() => addToBasket('Item 2')}
         />
         <Product
           name="Item 3"
           description="Baz"
-          onClick={() => addToCart('Item 3')}
+          onClick={() => addToBasket('Item 3')}
         />
         <Product
           name="Item 4"
           description="Qux"
-          onClick={() => addToCart('Item 4')}
+          onClick={() => addToBasket('Item 4')}
         />
       </div>
     </main>
