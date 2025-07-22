@@ -3,14 +3,7 @@ import { useState } from 'react';
 
 import styles from '@app/page.module.css';
 import Product from '@components/Product';
-
-function ItemCount({ count, name }: { count: number; name: string }) {
-  return (
-    <div key={name}>
-      {name} count: {count}
-    </div>
-  );
-}
+import Basket from '@components/Basket';
 
 export default function Home() {
   const [items, setItems] = useState<{ name: string; quantity: number }[]>([]);
@@ -30,25 +23,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>Michael&apos;s Amazing Web Store</p>
-        <div>
-          <button className={styles.basket}>Basket: {itemCount} items</button>
-          <ItemCount
-            name="Item 1"
-            count={items.find((item) => item.name === 'Item 1')?.quantity || 0}
-          />
-          <ItemCount
-            name="Item 2"
-            count={items.find((item) => item.name === 'Item 2')?.quantity || 0}
-          />
-          <ItemCount
-            name="Item 3"
-            count={items.find((item) => item.name === 'Item 3')?.quantity || 0}
-          />
-          <ItemCount
-            name="Item 4"
-            count={items.find((item) => item.name === 'Item 4')?.quantity || 0}
-          />
-        </div>
+        <Basket items={items} itemCount={itemCount} />
       </div>
 
       <div className={styles.grid}>
