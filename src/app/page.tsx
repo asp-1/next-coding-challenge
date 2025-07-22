@@ -2,6 +2,7 @@
 import { useState } from 'react';
 
 import styles from '@app/page.module.css';
+import Product from '@components/Product';
 
 function ItemCount({ count, name }: { count: number; name: string }) {
   return (
@@ -51,46 +52,26 @@ export default function Home() {
       </div>
 
       <div className={styles.grid}>
-        <button
-          className={styles.card}
+        <Product
+          name="Item 1"
+          description="Foo"
           onClick={() => addToCart('Item 1')}
-          aria-label="Add to basket"
-        >
-          <h2>
-            Item 1 <span>-&gt;</span>
-          </h2>
-          <p>Foo</p>
-        </button>
-        <button
-          className={styles.card}
+        />
+        <Product
+          name="Item 2"
+          description="Bar"
           onClick={() => addToCart('Item 2')}
-          aria-label="Add to basket"
-        >
-          <h2>
-            Item 2 <span>-&gt;</span>
-          </h2>
-          <p>Bar</p>
-        </button>
-        <button
-          className={styles.card}
+        />
+        <Product
+          name="Item 3"
+          description="Baz"
           onClick={() => addToCart('Item 3')}
-          aria-label="Add to basket"
-        >
-          <h2>
-            Item 3 <span>-&gt;</span>
-          </h2>
-          <p>Baz</p>
-        </button>
-        <button
-          className={styles.card}
+        />
+        <Product
+          name="Item 4"
+          description="Qux"
           onClick={() => addToCart('Item 4')}
-          aria-label="Add to basket"
-        >
-          <h2>
-            Item 4 <span>-&gt;</span>
-          </h2>
-          <p>Qux</p>
-        </button>
+        />
       </div>
     </main>
   );
