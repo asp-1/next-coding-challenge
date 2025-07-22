@@ -26,3 +26,34 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Run the testing and linting with `npm run test` and `npm run lint`.
+
+## Ash's Changelog
+
+- Refactored codebase
+  - Reconfigured ESLint to use Next and Prettier for more comprehensive rule converage, which will improve code quality and consistency
+  - Changed project structure (e.g. moved tests and styles into their own folder)
+  - Added additional aliases for cleaner imports
+  - Created reusable Product component
+    - Added prop types
+    - Specified HTML button type attribute
+    - Improved aria label
+    - Memoise component so it doesn't re-render unless props change
+    - Moved relevant styles from `page.module.css` to `product.module.css`
+  - Created reusable Basket and BasketItem components
+    - Added prop types
+    - Added aria label to Basket button
+    - Memoised components so they don't re-render unless props change
+    - Moved relevant styles from `page.module.css`
+    - Used `<ul>` and `<li>` to improve accessibility and structure for assitive technologies, such as screen readers
+    - Used `.map()` to iterate over items and render each basket item
+    - Calculated total quantity from basket array and memoised result
+  - Created type for item and placed it in `common/types` so that it can be used throughout the application
+  - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
+  - Refactored `addToBasket` (formerly `addToCart`) and used functional updater to ensure it uses the most-up-to-date previous value
+- Installed missing Jest types (`@types/jest`)
+- Resolved TypeScript error `Property 'toHaveTextContent' does not exist on type 'JestMatchers<HTMLElement>'.ts(2339)`
+- Made `home` tests pass
+  - Wrapped button clicks with `act()`
+  - Changed expected value to `/Basket: 1 items$/` to make test #2 pass
+  - Changed `name` property to match new aria labels
+  - Provided basket state and actions to `Home` component with `BasketContextProvider`
