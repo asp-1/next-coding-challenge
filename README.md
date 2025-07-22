@@ -40,7 +40,6 @@ Run the testing and linting with `npm run test` and `npm run lint`.
     - Memoise component so it doesn't re-render unless props change
     - Moved relevant styles from `page.module.css` to `product.module.css`
   - Created reusable Basket and BasketItem components
-    - Added prop types
     - Added aria label to Basket button
     - Memoised components so they don't re-render unless props change
     - Moved relevant styles from `page.module.css`
@@ -51,6 +50,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Created type for item and placed it in `common/types` so that it can be used throughout the application
   - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
   - Refactored `addToBasket` (formerly `addToCart`) and used functional updater to ensure it uses the most-up-to-date previous value
+- Aligned description items to the start using `flex-start`
 - Installed missing Jest types (`@types/jest`)
 - Resolved TypeScript error `Property 'toHaveTextContent' does not exist on type 'JestMatchers<HTMLElement>'.ts(2339)`
 - Made `home` tests pass
