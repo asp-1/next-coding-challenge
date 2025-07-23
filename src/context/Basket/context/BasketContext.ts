@@ -1,7 +1,7 @@
 'use client';
 import { createContext } from 'react';
 
-import type { Item } from '@types';
+import { Item } from '@typings/basket';
 
 type BasketContextValue = {
   basket: Item[];

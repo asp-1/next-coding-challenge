@@ -23,10 +23,10 @@
       "@app/*": ["./src/app/*"],
       "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
-      "@types": ["./src/common/types"],
+      "@typings*": ["./src/types/*"],
       "@context/*": ["./src/context/*"],
       "@data/*": ["./src/data/*"],
-      "@constants": ["./src/common/constants"]
+      "@constants/*": ["./src/constants/*"]
     },
     "types": [
       "@testing-library/jest-dom"

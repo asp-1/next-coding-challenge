@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
 
 import { initialBasketState, BasketContext } from '@context/Basket';
-import type { Item } from '@types';
+import type { Item } from '@typings/basket';
 
 type BasketContextProviderProps = {
   children: ReactNode;
