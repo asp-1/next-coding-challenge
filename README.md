@@ -56,8 +56,10 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
   - Refactored `addToBasket` (formerly `addToCart`) and used functional updater to ensure it uses the most-up-to-date previous value
   - Defined store name as a constant in `constants` for reuse
-  - Stored static products in JSON format in `data/products/products.json`
+  - Stored static product data in JSON format in `data/products/products.json`
+  - Calculate basket quantity from basket state instead to reduce complexity, minimise redundancy, and the need to manage additional state
 - Aligned description items to the start using `flex-start`
+- Used `@typings` alias instead of `@types` to prevent namespace conflicts
 - Installed missing Jest types (`@types/jest`)
 - Resolved TypeScript error `Property 'toHaveTextContent' does not exist on type 'JestMatchers<HTMLElement>'.ts(2339)`
 - Made `home` tests pass
