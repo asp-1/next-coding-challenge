@@ -5,7 +5,7 @@ import { useBasketContext } from '@context/Basket';
 import Product from '@components/Product';
 import products from '@data/products/products.json';
 
-const Products = () => {
+const Products: React.FC = () => {
   const { addToBasket } = useBasketContext();
 
   return (
