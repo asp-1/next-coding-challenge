@@ -55,6 +55,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Created type for item and placed it in `common/types` so that it can be used throughout the application
   - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
   - Refactored `addToBasket` (formerly `addToCart`) and used functional updater to ensure it uses the most-up-to-date previous value
+  - Defined store name as a constant in `common/constants` for reuse
 - Aligned description items to the start using `flex-start`
 - Installed missing Jest types (`@types/jest`)
 - Resolved TypeScript error `Property 'toHaveTextContent' does not exist on type 'JestMatchers<HTMLElement>'.ts(2339)`
