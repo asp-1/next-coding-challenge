@@ -18,7 +18,7 @@ describe('Home', () => {
       name: /Go to checkout, .* in basket/i,
     });
 
-    expect(basketButton).toHaveTextContent('Basket: 0 items');
+    expect(basketButton).toHaveTextContent(/Basket: 0 items$/);
   });
 
   it('renders a basket with 1 item', async () => {

@@ -36,11 +36,11 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Created reusable Product component
     - Added prop types
     - Specified HTML button type attribute
-    - Improved aria label
+    - Improved aria-label
     - Memoise component so it doesn't re-render unless props change
     - Moved relevant styles from `page.module.css` to `product.module.css`
   - Created reusable Basket and BasketItem components
-    - Added aria label to Basket button
+    - Added aria-label to Basket button
     - Memoised components so they don't re-render unless props change
     - Moved relevant styles from `page.module.css`
     - Used `<ul>` and `<li>` to improve accessibility and structure for assistive technologies, such as screen readers
@@ -65,5 +65,5 @@ Run the testing and linting with `npm run test` and `npm run lint`.
 - Made `home` tests pass
   - Wrapped button clicks with `act()`
   - Changed expected value to `/Basket: 1 items$/` to make test #2 pass
-  - Changed `name` property to match new aria labels
+  - Changed `name` property to match new aria-labels
   - Provided basket state and actions to `Home` component with `BasketContextProvider`

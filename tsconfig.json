@@ -27,7 +27,8 @@
       "@context/*": ["./src/context/*"],
       "@data/*": ["./src/data/*"],
       "@constants/*": ["./src/constants/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@testing/utils/*": ["./src/testing/utils/*"]
     },
     "types": [
       "@testing-library/jest-dom"
