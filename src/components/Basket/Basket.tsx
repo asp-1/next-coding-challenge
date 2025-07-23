@@ -10,7 +10,7 @@ const Basket: React.FC = () => {
   const { basket } = useBasketContext();
 
   const totalQuantity = useMemo(
-    () => basket.reduce((sum, item) => sum + item.quantity, 0),
+    () => basket.reduce((sum, { quantity }) => sum + quantity, 0),
     [basket],
   );
 
@@ -22,12 +22,8 @@ const Basket: React.FC = () => {
         Basket: {totalQuantity} items
       </button>
       <ul className={styles.basketList} aria-label="Basket items">
-        {basket.map((item: Item) => (
-          <BasketItem
-            key={item.name}
-            name={item.name}
-            count={item.quantity || 0}
-          />
+        {basket.map(({ name, quantity }: Item) => (
+          <BasketItem key={name} name={name} count={quantity || 0} />
         ))}
       </ul>
     </div>
