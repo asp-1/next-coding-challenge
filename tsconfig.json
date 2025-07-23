@@ -23,7 +23,7 @@
       "@app/*": ["./src/app/*"],
       "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
-      "@typings*": ["./src/types/*"],
+      "@typings/*": ["./src/types/*"],
       "@context/*": ["./src/context/*"],
       "@data/*": ["./src/data/*"],
       "@constants/*": ["./src/constants/*"],
