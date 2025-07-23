@@ -1,4 +1,4 @@
-import styles from '@app/page.module.css';
+import styles from './page.module.css';
 import Basket from '@components/Basket';
 import Products from '@components/Products';
 import { STORE_NAME } from '@constants/store';
