@@ -54,7 +54,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Removed unused `.content` CSS rule
   - Created type for item and placed it in `types` for reuse
   - Created Basket context, provider and custom hook so that we can manage and inject basket state and actions throughout the application
-  - Refactored `addToBasket` (formerly `addToCart`) and used functional updater to ensure it uses the most-up-to-date previous value
+  - Refactored `addToBasket()` (formerly `addToCart()`) and used functional updater to ensure it uses the most-up-to-date previous value
   - Defined store name as a constant in `constants` for reuse
   - Stored static product data in JSON format in `data/products/products.json`
   - Calculate basket quantity from basket state instead to reduce complexity, minimise redundancy, and the need to manage additional state
@@ -67,7 +67,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Changed expected value to `/Basket: 1 items$/` to make test #2 pass
   - Changed `name` property to match new aria-labels
   - Provided basket state and actions to `Home` component with `BasketContextProvider`
-- Added tests for `src/components`
+- Added tests for all components in `src/components`
   - Followed AAA (Arrange-Act-Assert) pattern
-  - Created render util function to inject basket context in `testing/utils/render`
+  - Added `renderWithBasketContext()` utility to wrap components with `BasketContext` in tests
   - Avoided hardcoding by defining values such as `name` and `count` as constants and generating regex patterns with template strings
