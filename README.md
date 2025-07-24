@@ -58,6 +58,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Defined store name as a constant in `constants` for reuse
   - Stored static product data in JSON format in `data/products/products.json`
   - Calculate basket quantity from basket state instead to reduce complexity, minimise redundancy, and the need to manage additional state
+  - Converted basket state from an array to a hashmap to improve performance of state access and updates with O(1) average-case operations
 - Aligned description items to the start using `flex-start`
 - Used `@typings` alias instead of `@types` to prevent namespace conflicts
 - Installed missing Jest types (`@types/jest`)
@@ -71,4 +72,3 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Followed AAA (Arrange-Act-Assert) pattern
   - Added `renderWithBasketContext()` utility to wrap components with `BasketContext` in tests
   - Avoided hardcoding by defining values such as `name` and `count` as constants and generating regex patterns with template strings
-- Converted basket state from an array to a hashmap to improve performance of state access and updates with O(1) average-case operations
