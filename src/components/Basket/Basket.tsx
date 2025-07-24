@@ -4,13 +4,13 @@ import React, { useMemo } from 'react';
 import styles from './basket.module.css';
 import BasketItem from '@components/BasketItem';
 import { useBasketContext } from '@context/Basket';
-import { getTotalQuantity } from '@utils/basket';
-import type { Item } from '@typings/basket';
+import { getTotalQuantity, getBasketItems } from '@utils/basket';
 
 const Basket: React.FC = () => {
   const { basket } = useBasketContext();
 
   const totalQuantity = useMemo(() => getTotalQuantity(basket), [basket]);
+  const basketItems = useMemo(() => getBasketItems(basket), [basket]);
 
   const ariaLabel = `Go to checkout, ${totalQuantity} items in basket`;
 
@@ -20,9 +20,11 @@ const Basket: React.FC = () => {
         Basket: {totalQuantity} items
       </button>
       <ul className={styles.basketList} aria-label="Basket items">
-        {basket.map(({ name, quantity }: Item) => (
-          <BasketItem key={name} name={name} count={quantity || 0} />
-        ))}
+        {basketItems.map(([name, item]) => {
+          const quantity = item?.quantity || 0;
+
+          return <BasketItem key={name} name={name} count={quantity} />;
+        })}
       </ul>
     </div>
   );

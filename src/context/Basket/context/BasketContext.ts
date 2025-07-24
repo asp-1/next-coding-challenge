@@ -4,12 +4,12 @@ import { createContext } from 'react';
 import { Item } from '@typings/basket';
 
 type BasketContextValue = {
-  basket: Item[];
+  basket: Item;
   addToBasket: (product: string) => void;
 };
 
 export const initialBasketState = {
-  basket: [],
+  basket: {},
   addToBasket: () => {},
 };
 

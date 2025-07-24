@@ -1,4 +1,5 @@
 export type Item = {
-  name: string;
-  quantity: number;
+  [key: string]: {
+    quantity: number;
+  };
 };

@@ -71,3 +71,4 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Followed AAA (Arrange-Act-Assert) pattern
   - Added `renderWithBasketContext()` utility to wrap components with `BasketContext` in tests
   - Avoided hardcoding by defining values such as `name` and `count` as constants and generating regex patterns with template strings
+- Converted basket state from an array to a hashmap to improve performance of state access and updates with O(1) average-case operations

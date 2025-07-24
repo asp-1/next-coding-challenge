@@ -6,7 +6,7 @@ import { BasketContext } from '@context/Basket';
 
 export const renderWithBasketContext = (
   component: React.ReactNode,
-  { basket = [], addToBasket = () => {} }: RenderWithBasketOptions = {},
+  { basket = {}, addToBasket = () => {} }: RenderWithBasketOptions = {},
 ) =>
   render(
     <BasketContext.Provider value={{ basket, addToBasket }}>

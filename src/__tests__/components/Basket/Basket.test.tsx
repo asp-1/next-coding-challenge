@@ -15,7 +15,11 @@ describe('Basket', () => {
   });
 
   it('renders a non-empty basket', () => {
-    const basket = [{ name: 'Item 1', quantity: 1 }];
+    const basket = {
+      'Item 1': {
+        quantity: 1,
+      },
+    };
 
     renderWithBasketContext(<Basket />, {
       basket,
@@ -39,31 +43,37 @@ describe('Basket', () => {
   });
 
   it('renders an item in the basket', () => {
-    const itemOne = { name: 'Item 1', quantity: 1 };
+    const itemOneKey = 'Item 1';
+    const itemOne = { [itemOneKey]: { quantity: 1 } };
 
-    const basket = [itemOne];
+    const basket = itemOne;
 
     renderWithBasketContext(<Basket />, {
       basket,
     });
 
-    const basketListItems = screen.getByText(
-      new RegExp(`${itemOne.name} count: ${itemOne.quantity}$`),
+    const basketListItem = screen.getByText(
+      new RegExp(`${itemOneKey} count: ${itemOne[itemOneKey].quantity}$`),
       {
         selector: 'li',
       },
     );
 
-    expect(basketListItems).toHaveTextContent(
-      new RegExp(`${itemOne.name} count: ${itemOne.quantity}$`),
+    expect(basketListItem).toHaveTextContent(
+      new RegExp(`${itemOneKey} count: ${itemOne[itemOneKey].quantity}$`),
     );
   });
 
   it('renders multiple items in the basket', () => {
-    const itemOne = { name: 'Item 1', quantity: 1 };
-    const itemTwo = { name: 'Item 2', quantity: 2 };
+    const itemOneKey = 'Item 1';
+    const itemTwoKey = 'Item 2';
+    const itemOne = { [itemOneKey]: { quantity: 1 } };
+    const itemTwo = { [itemTwoKey]: { quantity: 2 } };
 
-    const basket = [itemOne, itemTwo];
+    const basket = {
+      ...itemOne,
+      ...itemTwo,
+    };
 
     renderWithBasketContext(<Basket />, {
       basket,
@@ -72,10 +82,10 @@ describe('Basket', () => {
     const basketListItems = screen.getAllByRole('listitem');
 
     expect(basketListItems[0]).toHaveTextContent(
-      new RegExp(`${itemOne.name} count: ${itemOne.quantity}$`),
+      new RegExp(`${itemOneKey} count: ${itemOne[itemOneKey].quantity}$`),
     );
     expect(basketListItems[1]).toHaveTextContent(
-      new RegExp(`${itemTwo.name} count: ${itemTwo.quantity}$`),
+      new RegExp(`${itemTwoKey} count: ${itemTwo[itemTwoKey].quantity}$`),
     );
   });
 
