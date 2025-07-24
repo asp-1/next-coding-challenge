@@ -27,16 +27,36 @@ describe('Products', () => {
   });
 
   it('calls addToBasket on product click', () => {
+    const name = 'Item 1';
+
     renderWithBasketContext(<Products />, {
       addToBasket,
     });
 
     const productButton = screen.getByRole('button', {
-      name: /Add Item 1 to basket$/,
+      name: new RegExp(`Add ${name} to basket$`),
     });
 
     productButton.click();
 
     expect(addToBasket).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls addToBasket with the product name on click', () => {
+    const name = 'Item 1';
+
+    renderWithBasketContext(<Products />, {
+      addToBasket,
+    });
+
+    const productButton = screen.getByRole('button', {
+      name: new RegExp(`Add ${name} to basket$`),
+    });
+
+    productButton.click();
+
+    const callArgs = addToBasket.mock.calls[0];
+
+    expect(callArgs[0]).toEqual(name);
   });
 });
