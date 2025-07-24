@@ -67,3 +67,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Changed expected value to `/Basket: 1 items$/` to make test #2 pass
   - Changed `name` property to match new aria-labels
   - Provided basket state and actions to `Home` component with `BasketContextProvider`
+- Added tests for `src/components`
+  - Followed AAA (Arrange-Act-Assert) pattern
+  - Created render util function to inject basket context in `testing/utils/render`
+  - Avoided hardcoding by defining values such as `name` and `count` as constants and generating regex patterns with template strings
