@@ -39,30 +39,31 @@ describe('Basket', () => {
   });
 
   it('renders an item in the basket', () => {
-    const basket = [{ name: 'Item 1', quantity: 1 }];
+    const itemOne = { name: 'Item 1', quantity: 1 };
+
+    const basket = [itemOne];
 
     renderWithBasketContext(<Basket />, {
       basket,
     });
 
-    const basketListItems = screen.getByText(/Item 1 count: 1$/, {
-      selector: 'li',
-    });
+    const basketListItems = screen.getByText(
+      new RegExp(`${itemOne.name} count: ${itemOne.quantity}$`),
+      {
+        selector: 'li',
+      },
+    );
 
-    expect(basketListItems).toHaveTextContent(/Item 1 count: 1$/);
+    expect(basketListItems).toHaveTextContent(
+      new RegExp(`${itemOne.name} count: ${itemOne.quantity}$`),
+    );
   });
 
   it('renders multiple items in the basket', () => {
-    const basket = [
-      {
-        name: 'Item 1',
-        quantity: 1,
-      },
-      {
-        name: 'Item 2',
-        quantity: 2,
-      },
-    ];
+    const itemOne = { name: 'Item 1', quantity: 1 };
+    const itemTwo = { name: 'Item 2', quantity: 2 };
+
+    const basket = [itemOne, itemTwo];
 
     renderWithBasketContext(<Basket />, {
       basket,
@@ -70,8 +71,12 @@ describe('Basket', () => {
 
     const basketListItems = screen.getAllByRole('listitem');
 
-    expect(basketListItems[0]).toHaveTextContent(/Item 1 count: 1$/);
-    expect(basketListItems[1]).toHaveTextContent(/Item 2 count: 2$/);
+    expect(basketListItems[0]).toHaveTextContent(
+      new RegExp(`${itemOne.name} count: ${itemOne.quantity}$`),
+    );
+    expect(basketListItems[1]).toHaveTextContent(
+      new RegExp(`${itemTwo.name} count: ${itemTwo.quantity}$`),
+    );
   });
 
   it('applies the correct CSS class to the basket button', () => {

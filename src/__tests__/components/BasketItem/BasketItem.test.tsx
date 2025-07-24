@@ -3,8 +3,11 @@ import { render, screen } from '@testing-library/react';
 import BasketItem from '@components/BasketItem';
 
 describe('BasketItem', () => {
+  const name = 'Item 1';
+  const count = 1;
+
   beforeEach(() => {
-    render(<BasketItem name="Item 1" count={1} />);
+    render(<BasketItem name={name} count={count} />);
   });
 
   it('renders a basket list item', () => {
@@ -20,11 +23,16 @@ describe('BasketItem', () => {
   });
 
   it('renders the name and count', () => {
-    const basketListItem = screen.getByText(/Item 1 count: 1$/, {
-      selector: 'li',
-    });
+    const basketListItem = screen.getByText(
+      new RegExp(`${name} count: ${count}$`),
+      {
+        selector: 'li',
+      },
+    );
 
-    expect(basketListItem).toHaveTextContent(/Item 1 count: 1$/);
+    expect(basketListItem).toHaveTextContent(
+      new RegExp(`${name} count: ${count}$`),
+    );
   });
 
   it('applies the correct CSS class', () => {

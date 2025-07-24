@@ -3,29 +3,34 @@ import { render, screen } from '@testing-library/react';
 import Product from '@components/Product';
 
 describe('Product', () => {
+  const name = 'Item 1';
+  const description = 'Foo';
+
   let handleClick: jest.Mock;
 
   beforeEach(() => {
     handleClick = jest.fn();
 
-    render(<Product name="Item 1" description="Foo" onClick={handleClick} />);
+    render(
+      <Product name={name} description={description} onClick={handleClick} />,
+    );
   });
 
   it('renders the product', () => {
-    const name = screen.getByRole('heading', {
+    const heading = screen.getByRole('heading', {
       level: 2,
-      name: /Item 1 ->$/,
+      name: new RegExp(`${name} ->$`),
     });
 
-    const description = screen.getByText(/Foo$/);
+    const paragraph = screen.getByText(new RegExp(`${description}$`));
 
-    expect(name).toHaveTextContent(/Item 1 ->$/);
-    expect(description).toHaveTextContent(/Foo$/);
+    expect(heading).toHaveTextContent(/Item 1 ->$/);
+    expect(paragraph).toHaveTextContent(/Foo$/);
   });
 
   it('calls the click handler on click', () => {
     const productButton = screen.getByRole('button', {
-      name: /Add Item 1 to basket$/,
+      name: new RegExp(`Add ${name} to basket$`),
     });
 
     productButton.click();
@@ -35,18 +40,18 @@ describe('Product', () => {
 
   it('renders the name in the aria-label', () => {
     const productButton = screen.getByRole('button', {
-      name: /Add Item 1 to basket$/,
+      name: new RegExp(`Add ${name} to basket$`),
     });
 
     expect(productButton).toHaveAttribute(
       'aria-label',
-      expect.stringMatching(/Add Item 1 to basket$/),
+      expect.stringMatching(new RegExp(`Add ${name} to basket$`)),
     );
   });
 
   it('applies the correct CSS class to the product button', () => {
     const productButton = screen.getByRole('button', {
-      name: /Add Item 1 to basket$/,
+      name: new RegExp(`Add ${name} to basket$`),
     });
 
     expect(productButton).toHaveClass('product');
