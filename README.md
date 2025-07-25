@@ -91,7 +91,7 @@ Below are several areas where the project could be enhanced or refined.
 
 ### Branching
 
-- Enforce a branching strategy instead of pushing changes directly to the `main` branch
+- Enforce a branching strategy (e.g. Gitflow) instead of pushing changes directly to the `main` branch
 
 ### State Management
 
