@@ -12,6 +12,7 @@ const Basket: React.FC = () => {
   const totalQuantity = useMemo(() => getTotalQuantity(basket), [basket]);
   const basketItems = useMemo(() => getBasketItems(basket), [basket]);
 
+  const shouldRenderBasketItems = basketItems.length > 0;
   const ariaLabel = `Go to checkout, ${totalQuantity} items in basket`;
 
   return (
@@ -19,13 +20,15 @@ const Basket: React.FC = () => {
       <button type="button" className={styles.basket} aria-label={ariaLabel}>
         Basket: {totalQuantity} items
       </button>
-      <ul className={styles.basketList} aria-label="Basket items">
-        {basketItems.map(([name, item]) => {
-          const quantity = item?.quantity || 0;
+      {shouldRenderBasketItems && (
+        <ul className={styles.basketList} aria-label="Basket items">
+          {basketItems.map(([name, item]) => {
+            const quantity = item?.quantity || 0;
 
-          return <BasketItem key={name} name={name} count={quantity} />;
-        })}
-      </ul>
+            return <BasketItem key={name} name={name} count={quantity} />;
+          })}
+        </ul>
+      )}
     </div>
   );
 };

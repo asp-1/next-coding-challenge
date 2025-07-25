@@ -33,7 +33,15 @@ describe('Basket', () => {
   });
 
   it('renders a basket list', () => {
-    renderWithBasketContext(<Basket />);
+    const basket = {
+      'Item 1': {
+        quantity: 1,
+      },
+    };
+
+    renderWithBasketContext(<Basket />, {
+      basket,
+    });
 
     const basketList = screen.getByRole('list', {
       name: /Basket items$/,
@@ -100,7 +108,15 @@ describe('Basket', () => {
   });
 
   it('applies the correct CSS class to the basket list', () => {
-    renderWithBasketContext(<Basket />);
+    const basket = {
+      'Item 1': {
+        quantity: 1,
+      },
+    };
+
+    renderWithBasketContext(<Basket />, {
+      basket,
+    });
 
     const basketList = screen.getByRole('list', {
       name: /Basket items$/,
