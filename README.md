@@ -95,7 +95,7 @@ Below are several areas where the project could be enhanced or refined.
 
 ### State Management
 
-- A limitation of using React's Context API is that components subscribed to the context will re-render whenever any part of the context value changes, even if they're only using a small portion of it. In this project, every time a product is added to the basket, the entire list of products re-renders. At scale, this isn't great at all. If you have 1,000+ products rendered on the page, this behaviour can significantly impact performance. To solve this, we can switch to a state management library like Redux or similar libraries. This will allow us to separate state from actions and allow components to subscribe to only specific slices of state they care about.
+- A limitation of using React's Context API is that components subscribed to the context will re-render whenever any part of the context value changes, even if they're only using a small portion of it. In this project, every time a product is added to the basket, the entire list of products re-renders. At scale, this isn't great at all. If you have 1,000+ products rendered on the page, this behaviour can significantly impact performance. To solve this, we can switch to a state management library like Redux or similar libraries. This will allow us to separate state from actions and allow components to subscribe to only specific slices of state they care about
 
 ### Docker
 
