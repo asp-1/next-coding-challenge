@@ -27,7 +27,108 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Run the testing and linting with `npm run test` and `npm run lint`.
 
-## Ash's Changelog
+# Ash's Notes
+
+Firstly, thank you very much for the opportunity to take on this challenge. I really enjoyed working on the project, so much so that I ended up spending more than the suggested 4 hours on it.
+
+Whilst there's always room for improvement, I believe the project is now in good working condition and built with efficiency and scalability in mind. I hope this implementation gives you a clear sense of both my technical skills and the quality of work I aim to deliver in a production environment.
+
+## Implementation:
+
+### Project Structure
+
+One of the first few things I decided to do was switch the project to a flat modular folder structure. This type of folder structure allows for a clear separation of concerns and code reusability, as well as scalability and growth (e.g. it can easily accommodate new components, utils, constants, etc., without becoming complex or confusing).
+
+### Code Quality
+
+Code quality is incredibly important to me. I strive to write clean, maintainable code that developers in 10 years time can easily understand, maintain and extend. To improve code quality within this project, I:
+
+-  Added `"next"` and `"prettier/recommended"` to `.eslintrc.json`. This will allow us to enforce best practices for Next.js projects and catch potential issues early, and also enforce consistent code formatting with Prettier
+- Added path aliases to `tsconfig.json` for cleaner imports
+- Transformed hardcoded logic into modular, reusable React components
+- Increased type safety across the codebase by implementing TypeScript types for component props, function parameters, and state
+
+### State Management
+
+The new project structure and creation of reusable components introduced a risk of prop drilling, which would have been inefficient and hard to maintain, especially with deeply nested components.
+
+To solve this, I utilised React's Context API to centralise the basket state. Components that need access to the basket can now subscribe to the context directly. This eliminates the need to pass props through multiple levels and improves code maintainability.
+
+Additionally, I've placed the provider for the basket context (`BasketContextProvider`) at the root level in `layout.tsx`. This will ensure that the basket state persists across different pages, e.g. a checkout page.
+
+### Performance
+
+I enhanced the performance of this web application by:
+
+- Memoising React components using `React.memo()` to prevent unnecessary re-renders when component props remain unchanged
+- Memoising computationally expensive calculations using `useMemo()`. For example, in `Basket.tsx`, the results of `getTotalQuantity()` and `getBasketItems()` are cached to avoid redundant recalculations
+- Converting the basket state from an array to a hashmap to enable faster lookups and updates
+- Using `useCallback()` to memoise functions and prevent unnecessary re-creations on each render
+
+### UI/UX
+
+For this challenge, I focused on preserving the original UI as much as possible, so I didn't make any significant changes to the UI/UX beyond applying some basic styling to address clear visual issues.
+
+### Accessibility
+
+Accessibility is really important, especially in e-commerce. The project already utilised aria-labels, but there were still improvements that could have been made.
+
+Previously, each product button used a fixed `aria-label` of `"Add to basket"`, which didn't provide much context for users relying on screen readers. I updated the labels to dynamically include the product name, for example, `"Add Item 1 to basket"`, to give users more meaningful feedback.
+
+Additionally, I added an `aria-label` to the basket button that now communicates both its function and the current basket count, e.g. `"Go to checkout, 3 items in basket"`.
+
+Lastly, I made an effort to use semantic HTML elements to enhance accessibility for users of assistive technologies. For example, the `Basket` and `BasketItem` components use `<ul>` and `<li>` elements to represent the list of items in the basket. This helps screen readers and similar tools accurately interpret and convey the content as a structured list.
+
+### Testing
+
+In addition to fixing the existing broken tests in the project, I added several new unit tests, following the Arrange-Act-Assert (AAA) pattern, primarily targeting reusable React components, to further improve test coverage and ensure more reliable functionality.
+
+I also took the time to refactor the tests and avoid hardcoding by defining values such as `name` and `count` as constants and generating regex patterns with template strings, e.g. `new RegExp(`Add ${name} to basket$`)`.
+
+I also refactored the tests to eliminate hardcoded values by defining reusable constants (e.g. `name` and `count`) and generating regex patterns dynamically using template strings. For example, ``new RegExp(`Add ${name} to basket$`)``. This approach reduces duplication and makes the tests more maintainable and flexible when values change.
+
+## Areas for Improvement
+
+Below are several areas where the project could be enhanced or refined.
+
+### Branching
+
+- Enforce a branching strategy instead of pushing changes directly to the `main` branch
+
+### State Management
+
+- A limitation of using React's Context API is that components subscribed to the context will re-render whenever any part of the context value changes, even if they're only using a small portion of it. In this project, every time a product is added to the basket, the entire list of products re-renders. At scale, this isn't great at all. If you have 1,000+ products rendered on the page, this behaviour can significantly impact performance. To solve this, we can switch to a state management library like Redux or similar libraries. This will allow us to separate state from actions and allow components to subscribe to only specific slices of state they care about.
+
+### Docker
+
+- Dockerise the project, which will help to improve environment consistency and simplify local setup
+
+### CI/CD
+
+- Create a CI/CD pipeline that has 3 stages:
+  - Build
+    - Install project dependencies
+    - Run ESLint
+  - Test
+    - Run tests
+    - Generate a test coverage report
+      - Fail the pipeline on any test failure or when coverage is lower than the threshold
+  - Deploy
+    - Deploy the web application
+- The target environment depends on the branch strategy/event trigger, e.g.:
+  - Deploy the web application to a dev site (e.g. `dev.example.com`) when a pull request into `develop` is created
+  - Deploy the web application to a staging site (e.g. `staging.example.com`) when a `feature` branch is merged into `develop`
+  - Deploy the web application to a beta site (e.g. `beta.example.com`) when a pull request into `main` is created
+  - Deploy the web application to a production site (e.g. `example.com`) when a `release` branch is merged into `main`
+
+### Testing
+
+- Expand and deepen unit test coverage across the codebase
+- Implement E2E tests with a library like Cypress
+- Add accessibility tests, e.g. with `jest-axe`
+- Test the web application performance with React Profiler to identify things like bottlenecks
+
+## Changelog:
 
 - Refactored codebase
   - Reconfigured ESLint to use Next and Prettier for more comprehensive rule coverage, which will improve code quality and consistency
@@ -36,11 +137,11 @@ Run the testing and linting with `npm run test` and `npm run lint`.
   - Created reusable Product component
     - Added prop types
     - Specified HTML button type attribute
-    - Improved aria-label
+    - Improved `aria-label`
     - Memoise component so it doesn't re-render unless props change
     - Moved relevant styles from `page.module.css` to `product.module.css`
   - Created reusable Basket and BasketItem components
-    - Added aria-label to Basket button
+    - Added `aria-label` to Basket button
     - Memoised components so they don't re-render unless props change
     - Moved relevant styles from `page.module.css`
     - Used `<ul>` and `<li>` to improve accessibility and structure for assistive technologies, such as screen readers
@@ -66,7 +167,7 @@ Run the testing and linting with `npm run test` and `npm run lint`.
 - Made `home` tests pass
   - Wrapped button clicks with `act()`
   - Changed expected value to `/Basket: 1 items$/` to make test #2 pass
-  - Changed `name` property to match new aria-labels
+  - Changed `name` property to match new `aria-label` values
   - Provided basket state and actions to `Home` component with `BasketContextProvider`
 - Added tests for all components in `src/components`
   - Followed AAA (Arrange-Act-Assert) pattern
