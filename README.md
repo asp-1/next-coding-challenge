@@ -83,8 +83,6 @@ Lastly, I made an effort to use semantic HTML elements to enhance accessibility 
 
 In addition to fixing the existing broken tests in the project, I added several new unit tests, following the Arrange-Act-Assert (AAA) pattern, primarily targeting reusable React components, to further improve test coverage and ensure more reliable functionality.
 
-I also took the time to refactor the tests and avoid hardcoding by defining values such as `name` and `count` as constants and generating regex patterns with template strings, e.g. ``new RegExp(`Add ${name} to basket$`)``.
-
 I also refactored the tests to eliminate hardcoded values by defining reusable constants (e.g. `name` and `count`) and generating regex patterns dynamically using template strings. For example, ``new RegExp(`Add ${name} to basket$`)``. This approach reduces duplication and makes the tests more maintainable and flexible when values change.
 
 ## Areas for Improvement
